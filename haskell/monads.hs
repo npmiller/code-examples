@@ -1,22 +1,17 @@
 import System.Environment   
 import Data.List  
 
-main = do  
-	args <- getArgs  
-	progName <- getProgName  
-	putStrLn "The arguments are:"  
-	mapM putStrLn args  
-	putStrLn "The program name is:"  
-	putStrLn progName 
+main = main_do
 
-main = getArgs >>= (\args -> 
-	getProgName >>= (\progName ->
-		putStrLn "The arguments are:" >> mapM putStrLn args >> putStrLn "The program name is :" >> putStrLn progName
-				
-			)
-		)
+main_do = do
+	args <- getArgs
+	progName <- getProgName
+	putStrLn "The arguments are:"
+	mapM putStrLn args
+	putStrLn "The program name is:"
+	putStrLn progName
 
-main = getArgs >>= (\args -> 
+main_bind = getArgs >>= (\args ->
 	getProgName >>= (\progName ->
 		putStrLn "The arguments are:" >>= (\x ->
 			mapM putStrLn args >>= (\y ->
@@ -27,4 +22,11 @@ main = getArgs >>= (\args ->
 			)
 		)
 	)
+
+main_bind_alt = getArgs >>= (\args -> 
+	getProgName >>= (\progName ->
+		putStrLn "The arguments are:" >> mapM putStrLn args >> putStrLn "The program name is :" >> putStrLn progName
+				
+			)
+		)
 
